@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\AccountCreationMail;
 use App\Mail\DemoMail;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -34,7 +35,8 @@ class AuthController extends Controller
                 session()->put('role', 1);
                 session()->put('uid', $user[0]['id']);
             }
-            echo session('uid');
+            // echo session('uid');
+            return redirect('/dashboard');
             // echo session('uid');
             // return back();
         }
@@ -46,6 +48,13 @@ class AuthController extends Controller
     }
     public function create_acocunt(Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'username'=>'required|unique:users,username',
+            'phone'=>'required',
+         ]);
         $user = User::where('username', $request['username'])->first();
         if ($user == null) {
             $user2 = new User;
@@ -55,19 +64,24 @@ class AuthController extends Controller
             $user2->username = $request['username'];
             $user2->password = $request['password'];
             $user2->save();
+
             $user3 = User::where('username', $request['username'])->get();
             session()->put('isLoggedIn', 1);
             session()->put('uid', $user3[0]['id']);
-            $mailData = [
-                'title' => 'Mail from ItSolutionStuff.com',
-                'body' => 'This is for testing email using smtp.'
-            ];
-            Mail::to($request['email'])->send(new DemoMail($mailData));
-            dd("Email is sent successfully.");
-            return redirect('/home');
+            session()->put('name',$request['name']);
+            session()->put('email',$request['email']);
+            session()->put('phone',$request['phone']);
+            session()->put('pass',$request['password']);
+            Mail::to($request['email'])->send(new AccountCreationMail());
+            // session()->forget('na me');
+            session()->forget('pass');
+
+            // return redirect('/home');
             echo 1;
         } else {
             echo "Account Already Exist";
         }
+
+
     }
 }

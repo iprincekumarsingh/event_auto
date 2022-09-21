@@ -28,6 +28,6 @@ class DemoMail extends Mailable
      */
     public function build()
     {
-        return $this->subject("Account Creation Successfull ");
+        return $this->subject("Account Creation Successfull")->view('email');
     }
 }

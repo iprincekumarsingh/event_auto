@@ -19,7 +19,7 @@
 
             <form action="{{route('auth.register')}}" method="POST"
                 class="p-8 mt-6 mb-0 rounded-lg shadow-2xl space-y-4">
-                @csrf   
+                @csrf
                 <p class="text-lg font-medium">Sign up for your account</p>
                 <div class="col-span-3">
                     <label class="block mb-1 text-sm " for="name">
@@ -28,6 +28,11 @@
 
                     <input name="name" class="rounded-lg shadow-sm border-gray-200 w-full text-sm p-2.5" type="text"
                         id="name" />
+                        @error('name')
+                        <span style="color:red" class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
 
                 <div class="col-span-6">
@@ -35,8 +40,13 @@
                         Email
                     </label>
 
-                    <input name="email" class="rounded-lg shadow-sm border-gray-200 w-full text-sm p-2.5" type="email"
+                    <input  name="email" class="rounded-lg shadow-sm border-gray-200 w-full text-sm p-2.5" type="email"
                         id="email" />
+                        @error('email')
+                        <span style="color:red" class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
 
                 <div class="col-span-3">
@@ -46,6 +56,11 @@
 
                     <input name="username" class="rounded-lg shadow-sm border-gray-200 w-full text-sm p-2.5" type="text"
                         id="username" />
+                        @error('username')
+                        <span  style="color:red;font-weight:400" class="invaid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
 
                 <div class="col-span-6">
