@@ -74,30 +74,34 @@ class WebController extends Controller
         }
         $evenData = Event::where('event_id', session('eventcode'))->get();
         $uid = session('uid');
+        $time = time();
+         // create a folder
+         if (!\File::exists(public_path('images'))) {
+            \File::makeDirectory(public_path('images'), $mode = 0777, true, true);
+        }
+
+        QrCode::generate(session('paymentid'), 'images/' . $time . '.svg');
+
+        $img_url = 'images/' . $time . '.svg';
         // dd($response);
         $event = new Eventreg;
         $event->event_id = session('eventcode');
         $event->uid = session('uid');
         $event->amount = $evenData[0]['amount'];
         $event->payment_done = true;
+        $event->phone = "8093483115";
+        $event->address = "JagatPur";
         $event->payment_id = $request['razorpay_payment_id'];
-        $event->save();
-        session()->put('paymentid', $request['razorpay_payment_id']);
-        $time = time();
-
-        // create a folder
-        if (!\File::exists(public_path('images'))) {
-            \File::makeDirectory(public_path('images'), $mode = 0777, true, true);
-        }
-
-        QrCode::generate(session('payemntid'), 'images/' . $time . '.svg');
-
-        $img_url = 'images/' . $time . '.svg';
 
         session()->put('qrImage', $img_url);
+        $event->qr_code=session('qrImage');
+
+        $event->save();
+        session()->put('paymentid', $request['razorpay_payment_id']);
+
         Mail::to(session('email'))->send(new TicketGeneartionMail());
         // Session::put('success', 'Payment successful');
-        // return redirect()->back();
+        return redirect()->back();
 
     }
     public function thankyou()

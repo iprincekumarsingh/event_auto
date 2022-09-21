@@ -11,10 +11,15 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 
 Route::controller(AuthController::class)->group(function () {
-    Route::get('/login', 'index_login')->name('auth.index');
-    Route::POST('/auth', 'login')->name('auth.login');
-    Route::get('/singup', 'signup')->name('auth.singup');
-    Route::post('/register', 'create_acocunt')->name('auth.register');
+
+    if (session('isLoggedIn') == 1) {
+        return redirect('/');
+    } else {
+        Route::get('/login', 'index_login')->name('auth.index');
+        Route::POST('/auth', 'login')->name('auth.login');
+        Route::get('/singup', 'signup')->name('auth.singup');
+        Route::post('/register', 'create_acocunt')->name('auth.register');
+    }
 });
 
 Route::controller(WebController::class)->group(function () {
@@ -26,7 +31,7 @@ Route::controller(WebController::class)->group(function () {
 
     Route::get('/dashboard', 'userDashboard');
     Route::get('/logout', 'logout');
-    Route::get('th','thankyou');
+    Route::get('th', 'thankyou');
 });
 
 

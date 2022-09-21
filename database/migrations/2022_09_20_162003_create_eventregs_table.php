@@ -18,6 +18,9 @@ return new class extends Migration
             $table->string('amount');
             $table->string('uid');
             $table->string('event_id');
+            $table->string('contact');
+            $table->string('phone');
+            $table->string('address');
             $table->string('payment_id')->nullable();
             $table->string('razorpay_id')->nullable();
             $table->string('payment_done')->default(false);

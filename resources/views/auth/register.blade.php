@@ -28,10 +28,10 @@
 
                     <input name="name" class="rounded-lg shadow-sm border-gray-200 w-full text-sm p-2.5" type="text"
                         id="name" />
-                        @error('name')
-                        <span style="color:red" class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
+                    @error('name')
+                    <span style="color:red" class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
                     @enderror
                 </div>
 
@@ -40,37 +40,15 @@
                         Email
                     </label>
 
-                    <input  name="email" class="rounded-lg shadow-sm border-gray-200 w-full text-sm p-2.5" type="email"
+                    <input name="email" class="rounded-lg shadow-sm border-gray-200 w-full text-sm p-2.5" type="email"
                         id="email" />
-                        @error('email')
-                        <span style="color:red" class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
+                    @error('email')
+                    <span style="color:red" class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
                     @enderror
                 </div>
 
-                <div class="col-span-3">
-                    <label class="block mb-1 text-sm  capitalize" for="username">
-                        username
-                    </label>
-
-                    <input name="username" class="rounded-lg shadow-sm border-gray-200 w-full text-sm p-2.5" type="text"
-                        id="username" />
-                        @error('username')
-                        <span  style="color:red;font-weight:400" class="invaid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
-
-                <div class="col-span-6">
-                    <label class="block mb-1 text-sm " for="phone">
-                        Phone
-                    </label>
-
-                    <input name="phone" class="rounded-lg shadow-sm border-gray-200 w-full text-sm p-2.5" type="tel"
-                        id="phone" />
-                </div>
                 <div class="col-span-6">
                     <label class="block mb-1 text-sm " for="phone">
                         Password
@@ -78,6 +56,11 @@
 
                     <input name="password" class="rounded-lg shadow-sm border-gray-200 w-full text-sm p-2.5" type="tel"
                         id="phone" />
+                        @error('password')
+                        <span style="color:red" class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
                 </div>
 
                 <button type="submit"

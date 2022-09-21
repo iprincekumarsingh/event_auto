@@ -22,9 +22,9 @@
                     {{-- <label for="email" class="text-sm font-medium">Username</label> --}}
 
                     <div class="relative mt-1">
-                        <input required name="username" type="text" id="email"
+                        <input required name="email" type="text" id="email"
                             class="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
-                            placeholder="Enter Username" />
+                            placeholder="mail@mail.com" />
 
                     </div>
                 </div>
@@ -44,6 +44,13 @@
                     class="block w-full px-5 py-3 text-sm font-medium text-white bg-indigo-600 rounded-lg">
                     Sign in
                 </button>
+               @if (session()->has('error'))
+
+               <span   style="color:red;font-weight:400;text-align:center" class="invaid-feedback" role="alert">
+                   <strong>{{session('error')}}</strong>
+               </span>
+               @endif
+            {{-- @enderror --}}
 
                 <p class="text-sm text-center text-gray-500">
                     No account?
