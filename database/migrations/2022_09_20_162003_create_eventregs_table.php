@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id('pid');
             $table->string('amount');
             $table->string('uid');
+            $table->string('name');
+            $table->string('email');
             $table->string('event_id');
             $table->string('contact');
             $table->string('phone');

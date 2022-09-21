@@ -82,7 +82,7 @@ class AuthController extends Controller
         } else {
             echo "Account Already Exist";
         }
-        return redirect('/home');
+        return redirect('/');
 
 
     }
