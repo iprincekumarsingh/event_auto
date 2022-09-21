@@ -100,6 +100,7 @@ class WebController extends Controller
         $img_url = 'images/' . $time . '.svg';
         session()->put('qrImage', $img_url);
         $event->qr_code=session('qrImage');
+        session()->put('name',$request['name']);
 
         $event->save();
 

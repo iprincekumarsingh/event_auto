@@ -15,14 +15,17 @@
     </div>
     <!-- carousel-items -->
     <div class="carousel-inner relative w-full overflow-hidden">
+        @foreach ($event as  $events)
+
+
       <div class="carousel-item active relative float-left w-full">
-        <img src="https://mdbootstrap.com/img/Photos/Slides/img%20(15).jpg" class="block w-full" alt="..." />
+        <img src="{{url($events->feature_image)}}" class="block w-full" alt="..." />
         <div class="carousel-caption hidden md:block absolute text-center">
-          <h5 class="text-xl">First slide label</h5>
-          <p>Some representative placeholder content for the first slide.</p>
+          {{-- <h5 class="text-xl">First slide label</h5>
+          <p>Some representative placeholder content for the first slide.</p> --}}
         </div>
       </div>
-      <div class="carousel-item relative float-left w-full">
+      {{-- <div class="carousel-item relative float-left w-full">
         <img src="https://mdbootstrap.com/img/Photos/Slides/img%20(22).jpg" class="block w-full" alt="..." />
         <div class="carousel-caption hidden md:block absolute text-center">
           <h5 class="text-xl">Second slide label</h5>
@@ -35,7 +38,7 @@
           <h5 class="text-xl">Third slide label</h5>
           <p>Some representative placeholder content for the third slide.</p>
         </div>
-      </div>
+      </div> --}}
     </div>
     <button
       class="carousel-control-prev absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline left-0"
@@ -59,10 +62,10 @@
       <div
         class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
         <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900 capitalize">
-          Event name
+          Event name : {{$events->event_name}}
         </h1>
         <!-- event tags -->
-        <div class="flex flex-wrap justify-center space-x-2 capitalize">
+        {{-- <div class="flex flex-wrap justify-center space-x-2 capitalize">
           <span
             class="px-4 py-2 rounded-full text-gray-500 bg-gray-200 font-semibold text-sm flex align-center w-max select-none active:bg-gray-300 transition duration-300 ease">
             dance
@@ -77,7 +80,7 @@
             class="px-4 py-2 rounded-full text-gray-500 bg-gray-200 font-semibold text-sm flex align-center w-max select-none active:bg-gray-300 transition duration-300 ease">
             free drinks
           </span>
-        </div>
+        </div> --}}
         <p class="mb-8 leading-relaxed">
         <div class=""></div>
         Copper mug try-hard pitchfork pour-over freegan heirloom neutra air plant
@@ -209,11 +212,35 @@
         </div>
       </div>
       <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
-        <img class="object-cover object-center rounded-md" alt="hero"
-          src="https://api.lorem.space/image/movie?w=720&h=600&hash=fxt4fbru">
+        <!-- modal containing image box -->
+        <img class="object-cover object-center rounded-md cursor-pointer hover:scale-105 transition-transform" alt="event image"
+          src="https://via.placeholder.com/720x600/ccc.png" data-bs-toggle="modal" data-bs-target="#eventImageModal">
+        <!-- Modal -->
+        <div class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
+          id="eventImageModal" tabindex="-1" aria-labelledby="eventImageModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered relative w-auto pointer-events-none sm:max-w-2xl">
+            <div
+              class="modal-content  border-none relative flex flex-col w-full pointer-events-auto bg-transparent bg-clip-padding rounded-md outline-none text-current">
+              <div class="modal-header flex flex-shrink-0 items-center justify-between p-4 rounded-t-md">
+                <h5 class="text-xl font-medium leading-normal text-gray-200 capitalize" id="exampleModalLabel">
+                  &lt;image name&gt;
+                </h5>
+                <button type="button"
+                  class="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
+                  data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <!-- modal body -->
+              <div class="modal-body relative p-4">
+                <img class="mx-auto" src="https://via.placeholder.com/720x600/ccc.png" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
+
   <!-- Event details and booking end -->
 
   <!-- brands/partners/sponsors section start -->
@@ -352,25 +379,26 @@
       </div>
     </div>
   </section>
+  @endforeach
   <!-- brands section end -->
 
   <!-- iframe to be used -->
   <iframe src="" frameborder="0"></iframe>
 
   <!-- ====== Footer Section Start -->
-  <footer class="bg-white pt-6 md:pt-0 pb-10 lg:pb-20 relative z-10 px-6 ">
+  <footer style="display:flex" class="bg-white pt-6 md:pt-0 pb-10 lg:pb-20 relative z-10 px-6 ">
     <div class="container mx-auto">
       <div class="flex flex-wrap -mx-4">
         <div class="w-full sm:w-2/3 lg:w-3/12 px-4">
           <div class="w-full mb-10">
             <!-- LOGO IMAGE -->
             <a href="javascript:void(0)" class="inline-block max-w-[160px] mb-6">
-              <img src="./images/logoEvent-rectangle.png" alt="logo" class="max-w-full" />
+              <img src="{{url('img/logo.png')}}" alt="logo" class="max-w-full" />
             </a>
-            <p class="text-base text-body-color mb-7">
+            {{-- <p class="text-base text-body-color mb-7">
               Sed ut perspiciatis undmnis is iste natus error sit amet
               voluptatem totam rem aperiam.
-            </p>
+            </p> --}}
             <p class="flex items-center text-sm text-dark font-medium">
               <span class="text-primary mr-3">
                 <svg width="19" height="21" viewBox="0 0 19 21" class="fill-current">
@@ -386,171 +414,8 @@
             </p>
           </div>
         </div>
-        <div class="w-full sm:w-1/2 lg:w-2/12 px-4">
-          <div class="w-full mb-10">
-            <h4 class="text-dark text-lg font-semibold mb-9">Resources</h4>
-            <ul>
-              <li>
-                <a href="javascript:void(0)" class="
-                hover:underline
-                       inline-block
-                       text-base text-body-color
-                       hover:text-primary
-                       leading-loose
-                       mb-2
-                       ">
-                  Implementation
-                </a>
-              </li>
-              <li>
-                <a href="javascript:void(0)" class="
-                hover:underline
-                       inline-block
-                       text-base text-body-color
-                       hover:text-primary
-                       leading-loose
-                       mb-2
-                       ">
-                  Interactions
-                </a>
-              </li>
-              <li>
-                <a href="javascript:void(0)" class="
-                hover:underline
-                       inline-block
-                       text-base text-body-color
-                       hover:text-primary
-                       leading-loose
-                       mb-2
-                       ">
-                  Intranet
-                </a>
-              </li>
-              <li>
-                <a href="javascript:void(0)" class="
-                hover:underline
-                       inline-block
-                       text-base text-body-color
-                       hover:text-primary
-                       leading-loose
-                       mb-2
-                       ">
-                  Branding
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="w-full sm:w-1/2 lg:w-2/12 px-4">
-          <div class="w-full mb-10">
-            <h4 class="text-dark text-lg font-semibold mb-9">Company</h4>
-            <ul>
-              <li>
-                <a href="javascript:void(0)" class="
-                hover:underline
-                       inline-block
-                       text-base text-body-color
-                       hover:text-primary
-                       leading-loose
-                       mb-2
-                       ">
-                  Factors
-                </a>
-              </li>
-              <li>
-                <a href="javascript:void(0)" class="
-                hover:underline
-                       inline-block
-                       text-base text-body-color
-                       hover:text-primary
-                       leading-loose
-                       mb-2
-                       ">
-                  Assurance
-                </a>
-              </li>
-              <li>
-                <a href="javascript:void(0)" class="
-                hover:underline
-                       inline-block
-                       text-base text-body-color
-                       hover:text-primary
-                       leading-loose
-                       mb-2
-                       ">
-                  Applications
-                </a>
-              </li>
-              <li>
-                <a href="javascript:void(0)" class="
-                hover:underline
-                       inline-block
-                       text-base text-body-color
-                       hover:text-primary
-                       leading-loose
-                       mb-2
-                       ">
-                  Solutions
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="w-full sm:w-1/2 lg:w-2/12 px-4">
-          <div class="w-full mb-10">
-            <h4 class="text-dark text-lg font-semibold mb-9">Quick Links</h4>
-            <ul>
-              <li>
-                <a href="javascript:void(0)" class="
-                hover:underline
-                       inline-block
-                       text-base text-body-color
-                       hover:text-primary
-                       leading-loose
-                       mb-2
-                       ">
-                  Security
-                </a>
-              </li>
-              <li>
-                <a href="javascript:void(0)" class="
-                hover:underline
-                       inline-block
-                       text-base text-body-color
-                       hover:text-primary
-                       leading-loose
-                       mb-2
-                       ">
-                  Metrics
-                </a>
-              </li>
-              <li>
-                <a href="javascript:void(0)" class="
-                hover:underline
-                       inline-block
-                       text-base text-body-color
-                       hover:text-primary
-                       leading-loose
-                       mb-2
-                       ">
-                  Optimization
-                </a>
-              </li>
-              <li>
-                <a href="javascript:void(0)" class="
-                hover:underline
-                       inline-block
-                       text-base text-body-color
-                       hover:text-primary
-                       leading-loose
-                       mb-2
-                       ">
-                  Metrics
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
+
+
         <div class="w-full sm:w-1/2 lg:w-3/12 px-4">
           <div class="w-full mb-10">
             <h4 class="text-dark text-lg font-semibold mb-9">Follow Us On</h4>

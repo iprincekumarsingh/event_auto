@@ -38,7 +38,7 @@
                 <li><a class="text-sm text-gray-400 hover:text-gray-500" href="#">Contact</a></li>
             </ul>
             @if (session()->has('isLoggedIn'))
-                    @if (session()->has('role') !='0')
+                    @if (session()->has('role') =='0')
                     <a class="hidden lg:inline-block py-2 px-6 bg-indigo-600 hover:bg-indigo-700 text-sm text-white font-bold rounded-xl transition duration-200"
                         href="{{ url('/dashboard') }}" style="padding: 15px 30px;border: none;background: none;border: 1px solid;color: black;border-radius: 5px;">Dashboard</a>
 
@@ -56,7 +56,7 @@
                 href="http://127.0.0.1:8000/singup"
                 style="padding: 15px 30px;border: none;background: none;border: 1px solid;color: black;border-radius: 5px;">Sign
                 up</a>
-             
+
             @endif
 
         </nav>

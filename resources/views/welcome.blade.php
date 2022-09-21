@@ -35,7 +35,8 @@
                         <div class="mt-16 flex justify-between ">
                             <span
                                 class="p-3  border-2 border-gray-200 rounded-md text-base hover:bg-gray-200 hover:border-gray-200 cursor-pointer hover:text-black ">
-                                {{-- {{date('m/d/Y', $events}} --}}
+                                {{-- {{Carbon::parse($events->created_at)->format('Y-m-d');}} --}}
+                            View
                             </span>
                         </div>
                     </div>

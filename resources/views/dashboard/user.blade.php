@@ -32,12 +32,12 @@
                             <span class="text-xl">Ticket price - </span>
                             <span class="font-bold text-xl">Rs {{$events->amount}}</span>
                         </div>
-                        <div class="mt-16 flex justify-between ">
+                        {{-- <div class="mt-16 flex justify-between ">
                             <span
                                 class="p-3  border-2 border-gray-200 rounded-md text-base hover:bg-gray-200 hover:border-gray-200 cursor-pointer hover:text-black ">
                             {{-- {{date('m/d/Y', $events->created_at)}} | {{date('H:m A', $events->created_at)}} --}}
-                            </span>
-                        </div>
+                            {{-- </span>
+                        </div>  --}}
                     </div>
                 </article>
             </a>
