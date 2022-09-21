@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('slide_7')->nullable();
             $table->string('slide_8')->nullable();
             $table->string('venueGMap')->nullable();
+            $table->string('amount');
             $table->string('adrress')->nullable();
             $table->timestamps();
         });

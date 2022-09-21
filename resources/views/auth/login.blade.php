@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url('css/output.css')}}">
+    <title>login</title>
+</head>
+
+<body>
+
+    <section class="px-4 py-16 mx-auto max-w-screen-xl sm:px-6 lg:px-8">
+        <div class="max-w-lg mx-auto">
+            <h1 class="text-2xl font-bold text-center text-indigo-600 sm:text-3xl">Get started today</h1>
+            <form action="{{route('auth.login')}}" method="POST" class="p-8 mt-6 mb-0 rounded-lg shadow-2xl space-y-4">
+                @csrf
+                <p class="text-lg font-medium">Sign in to your account</p>
+
+                <div>
+                    {{-- <label for="email" class="text-sm font-medium">Username</label> --}}
+
+                    <div class="relative mt-1">
+                        <input required name="username" type="text" id="email"
+                            class="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
+                            placeholder="Enter Username" />
+
+                    </div>
+                </div>
+
+                <div>
+                    {{-- <label for="password" class="text-sm font-medium">Password</label> --}}
+
+                    <div class="relative mt-1">
+                        <input required name="password" type="password" id="password"
+                            class="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
+                            placeholder="Enter password" />
+
+                    </div>
+                </div>
+
+                <button type="submit"
+                    class="block w-full px-5 py-3 text-sm font-medium text-white bg-indigo-600 rounded-lg">
+                    Sign in
+                </button>
+
+                <p class="text-sm text-center text-gray-500">
+                    No account?
+                    <a class="underline" href="{{route('auth.singup')}}">Sign up</a>
+                </p>
+            </form>
+        </div>
+    </section>
+
+</body>
+
+</html>

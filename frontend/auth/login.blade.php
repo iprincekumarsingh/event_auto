@@ -49,7 +49,7 @@
 
         <p class="text-sm text-center text-gray-500">
           No account?
-          <a class="underline" href="">Sign up</a>
+        <a class="underline" href="{{route('auth.singups')}}">Sign up</a>
         </p>
       </form>
     </div>

@@ -14,7 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('eventregs', function (Blueprint $table) {
-            $table->id();
+            $table->id('pid');
+            $table->string('amount');
+            $table->string('uid');
+            $table->string('event_id');
+            $table->string('payment_id')->nullable();
+            $table->string('razorpay_id')->nullable();
+            $table->string('payment_done')->default(false);
+            $table->string('entryDone')->default(false);
             $table->timestamps();
         });
     }

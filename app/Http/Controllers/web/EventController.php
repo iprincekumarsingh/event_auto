@@ -30,6 +30,11 @@ class EventController extends Controller
     }
     public function bookEvent($event_id)
     {
-        
+
+    }
+    public function paytest()
+    {
+        return view('pay');
     }
 }
+
