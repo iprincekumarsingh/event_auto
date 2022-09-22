@@ -7,12 +7,12 @@
 <!-- Hero carousel start -->
 <!-- Hero carousel start -->
 <section id="heroCarousel" class="carousel slide relative" data-bs-ride="carousel">
-    <div class="carousel-indicators absolute right-0 bottom-0 left-0 flex justify-center p-0 mb-4">
-        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true"
-            aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    </div>
+    <!--<div class="carousel-indicators absolute right-0 bottom-0 left-0 flex justify-center p-0 mb-4">-->
+    <!--    <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true"-->
+    <!--        aria-label="Slide 1"></button>-->
+    <!--    <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>-->
+    <!--    <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>-->
+    <!--</div>-->
     <!-- carousel-items -->
     <div class="carousel-inner relative w-full overflow-hidden">
         @foreach ($event as $events)
@@ -38,18 +38,7 @@
             </div>
         </div> --}}
     </div>
-    <button
-        class="carousel-control-prev absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline left-0"
-        type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon inline-block bg-no-repeat" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button
-        class="carousel-control-next absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline right-0"
-        type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon inline-block bg-no-repeat" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
+   
 </section>
 <!-- Hero carousel end -->
 
@@ -249,7 +238,7 @@
         <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
             <!-- modal containing image box -->
             <img class="object-cover object-center rounded-md cursor-pointer hover:scale-105 transition-transform"
-                alt="event image" src="https://via.placeholder.com/720x600/ccc.png" data-bs-toggle="modal"
+                alt="event image" src="{{url('img/ticket_banner.png')}}" data-bs-toggle="modal"
                 data-bs-target="#eventImageModal">
             <!-- Modal -->
             <div class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
@@ -260,7 +249,7 @@
                         <div class="modal-header flex flex-shrink-0 items-center justify-between p-4 rounded-t-md">
                             <h5 class="text-xl font-medium leading-normal text-gray-200 capitalize"
                                 id="exampleModalLabel">
-                                &lt;image name&gt;
+
                             </h5>
                             <button type="button"
                                 class="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
@@ -268,7 +257,7 @@
                         </div>
                         <!-- modal body -->
                         <div class="modal-body relative p-4">
-                            <img class="mx-auto" src="https://via.placeholder.com/720x600/ccc.png" alt="">
+                            <img class="mx-auto" src="{{url('img/ticket_banner.png')}}" alt="">
                         </div>
                     </div>
                 </div>
@@ -285,15 +274,18 @@
 <!-- brands section end -->
 
 <!-- iframe to be used -->
-<iframe src="" frameborder="0"></iframe>
+<!--<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3410.504734850585!2d75.704008!3d31.262130999999993!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391a5f978d051fb5%3A0x70849fa20b736dda!2zS2luZ-KAmXMgYmF5!5e0!3m2!1sen!2sin!4v1663813827112!5m2!1sen!2sin" frameborder="0" style="-->
+<!--    width: 100%;-->
+<!--    height: 500px;-->
+<!--"></iframe>-->
 
 <!-- ====== Footer Section Start -->
 @include('layout.footer');
 <!-- ====== Footer Section End -->
-
-<script src="{{ url('/js/nav-toggle.js') }}"></script>
-<script src="{{ url('/tw-elements/dist/js/index.min.js') }}" defer></script>
-<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer="defer"></script>
+{{--
+<script src="{{ url('/js/nav-toggle.js') }}"></script> --}}
+ <script src="{{ url('/tw-elements/dist/js/index.min.js') }}" defer></script> 
+ <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer="defer"></script> 
 <script>
     var d = document.getELE("razorpay-payment-button");
     d.className +=

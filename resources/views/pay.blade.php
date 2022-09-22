@@ -41,11 +41,11 @@
         ?>
         @csrf
         <input type="text" hidden value="{{$total}}" name="tamount">
-        <script src="https://checkout.razorpay.com/v1/checkout.js" data-key="rzp_test_HypEZq4yiwaOUL" data-amount="{{$ftotal}}"
-            data-currency="INR" data-buttontext="Book Your seat" data-name="Programming Solutions"
-            data-description="Rozerpay"
-            data-image="https://cybercollege.info/wp-content/uploads/2021/06/cropped-logo.png" data-prefill.name="name"
-            data-prefill.email="" data-theme.color="#F37254"></script>
+        <script src="https://checkout.razorpay.com/v1/checkout.js" data-key="rzp_live_I5eIDUXSX6HJyL" data-amount="{{$ftotal}}"
+            data-currency="INR" data-buttontext="Book Your seat" data-name="Divyasrishti"
+            data-description="Raasleela :- A Garba Night"
+            data-image="https://divyasrishtievents.in/img/logo.png" data-prefill.name="name"
+            data-prefill.email="" data-theme.color="#012652"></script>
  {{-- @endforeach --}}
     </form>
     </div>
