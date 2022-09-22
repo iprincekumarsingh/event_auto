@@ -32,18 +32,18 @@ Route::controller(WebController::class)->group(function () {
     Route::get('/dashboard', 'userDashboard');
     Route::get('/logout', 'logout');
     Route::get('th', 'thankyou');
-    
-    Route::post('/pay','pay');
-    Route::get('/addname','addName');
-    Route::get('/contact-us','contact');
-    
-    Route::post('/contactQuery','contactSend');
-    
-    
-    
-    Route::get('/terms-conditions','termsCondtions');
-    Route::get('/privacy-policy','privacyPolicy');
-    Route::get('/refund-cancellation','RefundCancellation');
+
+    Route::post('/pay', 'pay');
+    Route::get('/addname', 'addName');
+    Route::get('/contact-us', 'contact');
+
+    Route::post('/contactQuery', 'contactSend');
+
+
+
+    Route::get('/terms-conditions', 'termsCondtions');
+    Route::get('/privacy-policy', 'privacyPolicy');
+    Route::get('/refund-cancellation', 'RefundCancellation');
 });
 
 
@@ -53,7 +53,7 @@ Route::controller(AdminController::class)->group(function () {
     Route::get('/scanner', 'scanner');
     Route::get('/ticketCollector', 'reserve');
 });
-Route::get('pick',function(){
+Route::get('pick', function () {
     return view('web.pickuppoint');
 });
 
@@ -79,27 +79,31 @@ Route::get('/generate', function () {
 
     session()->put('qrImage', $img_url);
     echo session('qrImage');
-    
+
     // return view('qr');
 });
-Route::get('/m/{pay_id}/{name}/{email}', function ($pay_id,$name,$email) {
-     $time = time();
+Route::get('/m/{pay_id}/{name}/{email}', function ($pay_id, $name, $email) {
+    $time = time();
 
-        // create a folder
-        if (!\File::exists(public_path('images'))) {
-            \File::makeDirectory(public_path('images'), $mode = 0777, true, true);
-        }
-session()->put('name',$name);
-         QrCode::size(500)->format('png')->generate($pay_id, 'images/' . $time . '.png');
+    // create a folder
+    if (!\File::exists(public_path('images'))) {
+        \File::makeDirectory(public_path('images'), $mode = 0777, true, true);
+    }
+    session()->put('name', $name);
+    QrCode::size(500)->format('png')->generate($pay_id, 'images/' . $time . '.png');
 
-// QrCode::format('png')
-        $img_url = 'images/' . $time . '.png';
+    // QrCode::format('png')
+    $img_url = 'images/' . $time . '.png';
 
-        session()->put('qrImage', $img_url);
-        Mail::to($email)->send(new TicketGeneartionMail());
+    session()->put('qrImage', $img_url);
+    Mail::to($email)->send(new TicketGeneartionMail());
     return view('email.ticketGeneration');
 });
- Route::get('/clear-cache', function() {
-     $exitCode = Artisan::call('cache:clear');
-     return 'Application cache cleared';
- });
+Route::get('/clear-cache', function () {
+    $exitCode = Artisan::call('cache:clear');
+    return 'Application cache cleared';
+});
+
+Route::controller(AdminController::class)->group(function () {
+    Route::get('/admin/dashboard','index');
+});

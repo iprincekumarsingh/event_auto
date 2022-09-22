@@ -48,15 +48,14 @@
             @if (session()->has('isLoggedIn'))
             <a class="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-sm text-gray-900 font-bold  rounded-xl transition duration-200"
                 href="{{ url('/logout')}}">Logout</a>
-            @if (session()->has('role') =='0')
-           
-
+            @if (session('role')=='1')
+            <a class="hidden lg:inline-block py-2 px-6 bg-indigo-600 hover:bg-indigo-700 text-sm text-white font-bold rounded-xl transition duration-200"
+                href="{{ url('/admin/dashboard') }}"
+                style=" padding: 15px 30px;border: none;background: none;border: 1px solid;color: black;border-radius:
+                5px;">Admin
+                Dashboard</a>
             @else
-            <!--<a class="hidden lg:inline-block py-2 px-6 bg-indigo-600 hover:bg-indigo-700 text-sm text-white font-bold rounded-xl transition duration-200"-->
-            <!--    href="{{ url('/dashboard') }}"-->
-            <!--    style="padding: 15px 30px;border: none;background: none;border: 1px solid;color: black;border-radius: 5px;">Admin-->
-            <!--    Dashboard</a>-->
-             <a class="hidden lg:inline-block py-2 px-6 bg-indigo-600 hover:bg-indigo-700 text-sm text-white font-bold rounded-xl transition duration-200"
+            <a class="hidden lg:inline-block py-2 px-6 bg-indigo-600 hover:bg-indigo-700 text-sm text-white font-bold rounded-xl transition duration-200"
                 href="{{ url('/dashboard') }}"
                 style="padding: 15px 30px;border: none;background: none;border: 1px solid;color: black;border-radius: 5px;">Dashboard</a>
 
@@ -108,12 +107,12 @@
 
                         @if (session()->has('role') !='0')
                         @else
-                       
+
                         <li class="mb-1">
                             <a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded"
                                 href="{{url('/dashboard')}}">Dashboard</a>
                         </li>
-                      
+
 
                         @endif
                         <li class="mb-1">
