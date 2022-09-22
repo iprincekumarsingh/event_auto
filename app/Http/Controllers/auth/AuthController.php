@@ -70,8 +70,8 @@ class AuthController extends Controller
             $user3 = User::where('email', $request['email'])->get();
             session()->put('isLoggedIn', 1);
             session()->put('uid', $user3[0]['id']);
-            session()->put('name',$request['name']);
-            session()->put('email',$request['email']);
+            // session()->put('name',$request['name']);
+            // session()->put('email',$request['email']);
             // session()->put('phone',$request['phone']);
             session()->put('pass',$request['password']);
             Mail::to($request['email'])->send(new AccountCreationMail());

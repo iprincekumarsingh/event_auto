@@ -6,26 +6,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Laravel 8 - Razorpay Payment Gateway Integration</title>
+    <title></title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
-
+    <style>
+        .razorpay-payment-button{
+            display: none
+        }
+    </style>
 </head>
+<script>
+    $(window).on('load', function() {
+      $('.razorpay-payment-button').click();
+    });
+</script>
 
 <body>
-
-
+    <p>processing payment don`t refresh back or press back button</p>
     <form action="/payment" method="get">
-        @foreach ($event as $events)
-        <input type="text" name="eventcode" hidden value="{{$events->event_id}}">
-        <input type="text" name="email" hidden value="{{session('email')}}">
+        {{-- @foreach ($event as $events) --}}
+        <input type="text" name="eventcode" hidden value="{{app('request')->input('eventcode') }}">
+        <input type="text" name="name" hidden value="{{app('request')->input('name') }}">
+        <input type="text" name="email2" hidden value="{{app('request')->input('email') }}">
+        <input type="text" name="phone" hidden value="{{app('request')->input('phone') }}">
+        <input type="text" name="address" hidden value="{{app('request')->input('address') }}">
+        <input type="text" name="ticket_count" hidden value="{{app('request')->input('ticketCount') }}">
+        {{app('request')->input('email')}}
+        <?php
+        $ticketcount = $_POST['ticketCount'];
+        $total = $ticketcount*599;
+        $ftotal = $total*100;
+        // echo $ftotaol;
+        // echo $ftotal;
+
+        ?>
         @csrf
-        <script src="https://checkout.razorpay.com/v1/checkout.js" data-key="rzp_test_HypEZq4yiwaOUL"
-            data-amount="{{$events['amount'] *100}}" data-currency="INR" data-buttontext="Book Your seat" data-name="Programming Solutions"
-            data-description="Rozerpay" data-image="https://cybercollege.info/wp-content/uploads/2021/06/cropped-logo.png"
-            data-prefill.name="name" data-prefill.email="me@princekumarsingh.tech" data-theme.color="#F37254"></script>
-            @endforeach
+        <input type="text" hidden value="{{$total}}" name="tamount">
+        <script src="https://checkout.razorpay.com/v1/checkout.js" data-key="rzp_test_HypEZq4yiwaOUL" data-amount="{{$ftotal}}"
+            data-currency="INR" data-buttontext="Book Your seat" data-name="Programming Solutions"
+            data-description="Rozerpay"
+            data-image="https://cybercollege.info/wp-content/uploads/2021/06/cropped-logo.png" data-prefill.name="name"
+            data-prefill.email="" data-theme.color="#F37254"></script>
+ {{-- @endforeach --}}
     </form>
     </div>
 </body>
+
 
 </html>

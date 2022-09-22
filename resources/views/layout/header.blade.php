@@ -38,22 +38,26 @@
                 <li><a class="text-sm text-gray-400 hover:text-gray-500" href="#">Contact</a></li>
             </ul>
             @if (session()->has('isLoggedIn'))
-                    @if (session()->has('role') =='0')
-                    <a class="hidden lg:inline-block py-2 px-6 bg-indigo-600 hover:bg-indigo-700 text-sm text-white font-bold rounded-xl transition duration-200"
-                        href="{{ url('/dashboard') }}" style="padding: 15px 30px;border: none;background: none;border: 1px solid;color: black;border-radius: 5px;">Dashboard</a>
+            <a class="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-sm text-gray-900 font-bold  rounded-xl transition duration-200"
+                href="{{ url('/logout')}}">Logout</a>
+            @if (session()->has('role') =='0')
+            <a class="hidden lg:inline-block py-2 px-6 bg-indigo-600 hover:bg-indigo-700 text-sm text-white font-bold rounded-xl transition duration-200"
+                href="{{ url('/dashboard') }}"
+                style="padding: 15px 30px;border: none;background: none;border: 1px solid;color: black;border-radius: 5px;">Dashboard</a>
 
-                    @else
-                    <a class="hidden lg:inline-block py-2 px-6 bg-indigo-600 hover:bg-indigo-700 text-sm text-white font-bold rounded-xl transition duration-200"
-                        href="{{ url('/dashboard') }}"
-                        style="padding: 15px 30px;border: none;background: none;border: 1px solid;color: black;border-radius: 5px;">Admin
-                        Dashboard</a>
-                    @endif
+            @else
+            <a class="hidden lg:inline-block py-2 px-6 bg-indigo-600 hover:bg-indigo-700 text-sm text-white font-bold rounded-xl transition duration-200"
+                href="{{ url('/dashboard') }}"
+                style="padding: 15px 30px;border: none;background: none;border: 1px solid;color: black;border-radius: 5px;">Admin
+                Dashboard</a>
+
+            @endif
 
             @else
             <a class="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-sm text-gray-900 font-bold  rounded-xl transition duration-200"
                 href="{{ route('auth.index') }}">Sign In</a>
-                <a class="hidden lg:inline-block py-2 px-6 bg-indigo-600 hover:bg-indigo-700 text-sm text-white font-bold rounded-xl transition duration-200"
-                href="http://127.0.0.1:8000/singup"
+            <a class="hidden lg:inline-block py-2 px-6 bg-indigo-600 hover:bg-indigo-700 text-sm text-white font-bold rounded-xl transition duration-200"
+                href="{{ route('auth.singup') }}"
                 style="padding: 15px 30px;border: none;background: none;border: 1px solid;color: black;border-radius: 5px;">Sign
                 up</a>
 
@@ -67,7 +71,7 @@
                 <div class="flex items-center mb-8">
                     <!-- logo image -->
                     <a class="mr-auto text-3xl font-bold leading-none" href="#">
-                        <img src="./images/logoEvent.png" class="h-24" alt="logo">
+                        <img src="{{url('/img/logo.png')}}" class="h-24" alt="logo">
                     </a>
                     <button class="navbar-close">
                         <svg class="h-6 w-6 text-gray-400 cursor-pointer hover:text-gray-500"
@@ -87,8 +91,29 @@
                             <a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded"
                                 href="#">Contact</a>
                         </li>
+                        @if (session('isLoggedIn'))
+
+                        @if (session()->has('role') !='0')
+                        <li class="mb-1">
+                            <a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded"
+                                href="{{url('/dashboard')}}">Dashboard</a>
+                        </li>
+                        @else
+                        <li class="mb-1">
+                            <a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded"
+                                href="{{url('/dashboard')}}">Admin Dashboard</a>
+                        </li>
+
+                        @endif
+                        <li class="mb-1">
+                            <a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded"
+                                href="#">Logout</a>
+                        </li>
+                        @else
+                        @endif
                     </ul>
                 </div>
+                @if (session()->has('IsLoggedIn'))
                 <div class="mt-auto">
                     <div class="pt-6">
                         <a class="block px-4 py-3 mb-3 leading-loose text-xs text-center font-semibold leading-none bg-gray-50 hover:bg-gray-100 rounded-xl"
@@ -100,6 +125,8 @@
                         <span>Copyright © 2022</span>
                     </p>
                 </div>
+
+                @endif
             </nav>
         </div>
     </navbar>

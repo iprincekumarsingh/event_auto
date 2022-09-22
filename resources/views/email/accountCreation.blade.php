@@ -208,7 +208,6 @@ table, td { color: #000000; } #u_body a { color: #f1b94b; text-decoration: under
   <div style="color: #868686; line-height: 180%; text-align: left; word-wrap: break-word;">
     <p style="font-size: 14px; line-height: 180%;">Name: {{session('name')}}</p>
 <p style="font-size: 14px; line-height: 180%;">Email:  {{session('email')}}</p>
-<p style="font-size: 14px; line-height: 180%;">Phone:  {{session('phone')}}</p>
 <p style="font-size: 14px; line-height: 180%;">Password:  {{session('pass')}}</p>
   </div>
 
