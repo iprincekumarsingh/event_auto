@@ -127,8 +127,9 @@
     <script src="{{ url('bundle.js') }}"></script>
     <script>
         $('#save').click(function() {
-            document.getElementById("form").addEventListener("click", function(event){
+            // document.getElementById("form").addEventListener("click", function(event){
   event.preventDefault()
+  $ticket_number = $('#result').val();
             $.ajax({
                 url: "ticketCollector",
                 method: "GET",
@@ -181,12 +182,14 @@
                             onClick: function() {} // Callback after click
                         }).showToast();
                     }
+                    console.log(dataabc);
                 }
             });
             // console.log($title);
 
 
         });
+
     </script>
 
 </body>

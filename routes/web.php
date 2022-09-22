@@ -103,7 +103,10 @@ Route::get('/clear-cache', function () {
     $exitCode = Artisan::call('cache:clear');
     return 'Application cache cleared';
 });
-
 Route::controller(AdminController::class)->group(function () {
-    Route::get('/admin/dashboard','index');
+
+     Route::get('/admin/dashboard','index');
+     Route::get('/admin/users','usersIndex');
+
+
 });

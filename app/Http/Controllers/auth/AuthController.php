@@ -30,6 +30,7 @@ class AuthController extends Controller
             session()->put('isLoggedIn', 1);
             session()->put('email', $user[0]['email']);
             session()->put('role', $user[0]['role']);
+        session()->put('uid', $user[0]['uid']);
         }
         return redirect('/');
     }
