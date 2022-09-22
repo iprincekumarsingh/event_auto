@@ -25,22 +25,13 @@ class AuthController extends Controller
             ->get();
 
         if ($user->count() == 0) {
-            return back()->with('error','Incorrect Username/Password');
+            return back()->with('error', 'Incorrect Username/Password');
         } else {
             session()->put('isLoggedIn', 1);
-            session()->put('email',$user[0]['email']);
-            if ($user[0]['role'] == 0) {
-                session()->put('role', '0');
-                session()->put('uid', $user[0]['id']);
-            } elseif ($user[0]['role'] == 1) {
-                session()->put('role', 1);
-                session()->put('uid', $user[0]['id']);
-            }
-            echo session('uid');
-            // return bac
-            // echo session('uid');
-            return redirect('/');
+            session()->put('email', $user[0]['email']);
+            session()->put('role', $user[0]['role']);
         }
+        return redirect('/');
     }
 
     public function signup()
@@ -53,10 +44,10 @@ class AuthController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
             // 'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
-            'password'=>'required'
+            'password' => 'required'
             // 'username'=>'required|unique:users,username',
             // 'phone'=>'required',
-         ]);
+        ]);
         $user = User::where('email', $request['email'])->first();
         if ($user == null) {
             $user2 = new User;
@@ -70,10 +61,10 @@ class AuthController extends Controller
             $user3 = User::where('email', $request['email'])->get();
             session()->put('isLoggedIn', 1);
             session()->put('uid', $user3[0]['id']);
-            session()->put('name',$request['name']);
-            session()->put('email',$request['email']);
+            session()->put('name', $request['name']);
+            session()->put('email', $request['email']);
             // session()->put('phone',$request['phone']);
-            session()->put('pass',$request['password']);
+            session()->put('pass', $request['password']);
             Mail::to($request['email'])->send(new AccountCreationMail());
             // session()->forget('na me');
             session()->forget('pass');
@@ -83,7 +74,5 @@ class AuthController extends Controller
             echo "Account Already Exist";
         }
         return redirect('/');
-
-
     }
 }
