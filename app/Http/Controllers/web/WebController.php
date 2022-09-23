@@ -59,7 +59,7 @@ class WebController extends Controller
         $input = $request->all();
 
         session()->put('eventcode', $request['eventcode']);
-        $api = new Api("rzp_live_I5eIDUXSX6HJyL", "EkQwdE0WZHnGC2AYiqvlkgSN");
+        $api = new Api("rzp_test_6ezF7HXzvyJKB5", "x7iCwmMhD99vdUU7vywVbMcd");
 
         $payment = $api->payment->fetch($input['razorpay_payment_id']);
 
@@ -70,8 +70,8 @@ class WebController extends Controller
                 $response = $api->payment->fetch($input['razorpay_payment_id'])->capture(array('amount' => $payment['amount']));
             } catch (Exception $e) {
                 return  $e->getMessage();
-                Session::put('error', $e->getMessage());
-                // return redirect()->back();
+                session()->put('error', $e->getMessage());
+                return redirect()->back();
             }
         }
         $evenData = Event::where('event_id', session('eventcode'))->get();
@@ -86,7 +86,7 @@ class WebController extends Controller
         // dd($response);
         $event = new Eventreg;
         $event->event_id = session('eventcode');
-        $event->uid = session('uid');
+        $event->uid = 0;
         $event->amount =$request['tamount'];
         $event->payment_done = true;
         $event->name=$request['name'];
@@ -97,14 +97,14 @@ class WebController extends Controller
         $event->payment_id = $request['razorpay_payment_id'];
 
         session()->put('paymentid', $request['razorpay_payment_id']);
-        // QrCode::generate(session('paymentid'), 'images/' . $time . '.svg');
+        QrCode::generate(session('paymentid'), 'images/' . $time . '.svg');
 
-        // $img_url = 'images/' . $time . '.svg';
-        
-      QrCode::size(500)->format('png')->generate(session('paymentid'), 'images/' . $time . '.png');
+        $img_url = 'images/' . $time . '.svg';
+
+    //   QrCode::size(500)->format('png')->generate(session('paymentid'), 'images/' . $time . '.png');
 
         // QrCode::format('png')
-        $img_url = 'images/' . $time . '.png';
+        // $img_url = 'images/' . $time . '.png';
         session()->put('qrImage', $img_url);
         $event->qr_code=session('qrImage');
         session()->put('name',$request['name']);

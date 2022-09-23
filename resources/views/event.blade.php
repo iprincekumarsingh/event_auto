@@ -38,7 +38,7 @@
             </div>
         </div> --}}
     </div>
-   
+
 </section>
 <!-- Hero carousel end -->
 
@@ -74,7 +74,7 @@
             </p>
             <div class="flex justify-center py-4">
 
-                @if (session()->has('isLoggedIn'))
+                {{-- @if (session()->has('isLoggedIn')) --}}
                 <button class="relative inline-block group focus:outline-none focus:ring" data-bs-toggle="modal"
                 data-bs-target="#ticketBookingModal" href="#">
                 <span
@@ -85,7 +85,7 @@
                     Buy your ticket
                 </span>
             </button>
-                @else
+                {{-- @else
                 <button class="relative inline-block group focus:outline-none focus:ring"
                 data-bs-target="#ticketBookingModal" href="#">
                 <span
@@ -94,10 +94,10 @@
                 <span
                     class="relative inline-block px-8 py-3 text-lg font-bold tracking-widest text-black uppercase border-2 border-current group-active:text-opacity-75">
                  <a href="{{route('auth.index')}}"> Login to Book Ticket</a>
-                </span>
-            </button>
+                </span> --}}
+            {{-- </button> --}}
 
-                @endif
+                {{-- @endif --}}
 
 
                 <!-- Modal -->
@@ -284,8 +284,8 @@
 <!-- ====== Footer Section End -->
 {{--
 <script src="{{ url('/js/nav-toggle.js') }}"></script> --}}
- <script src="{{ url('/tw-elements/dist/js/index.min.js') }}" defer></script> 
- <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer="defer"></script> 
+ <script src="{{ url('/tw-elements/dist/js/index.min.js') }}" defer></script>
+ <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer="defer"></script>
 <script>
     var d = document.getELE("razorpay-payment-button");
     d.className +=

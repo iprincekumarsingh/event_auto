@@ -30,8 +30,8 @@
         <!-- Header -->
         <header class="app__header">
             <span class="app__header-icon">
-                <a href="{{url('foodScanner')}}">
-                    <img width="100px" src="{{url('img/food1.png')}}" alt="" srcset="">
+                <a href="{{url('scanner')}}">
+                    <img width="100px" src="{{url('img/event.png')}}" alt="" srcset="">
                 </a>
             </span>
         </header>
@@ -122,7 +122,7 @@
   event.preventDefault()
   $ticket_number = $('#result').val();
             $.ajax({
-                url: "ticketCollector",
+                url: "foodCollector",
                 method: "GET",
                 data: {
                     ticket_number: $ticket_number,
@@ -130,7 +130,7 @@
                 success: function(dataabc) {
                     if (dataabc == 1) {
                         Toastify({
-                            text: "Entry Successfull",
+                            text: "Food Token Done",
                             // duration: 2000,
                             newWindow: true,
                             close: true,
@@ -144,7 +144,7 @@
                         }).showToast();
                     } else if(dataabc==-1) {
                         Toastify({
-                            text: "Entry is Already Given",
+                            text: "Food Token Already Used",
                             // duration: 3000,
                             newWindow: true,
                             close: true,

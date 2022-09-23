@@ -40,7 +40,6 @@ Route::controller(WebController::class)->group(function () {
     Route::post('/contactQuery', 'contactSend');
 
 
-
     Route::get('/terms-conditions', 'termsCondtions');
     Route::get('/privacy-policy', 'privacyPolicy');
     Route::get('/refund-cancellation', 'RefundCancellation');
@@ -50,8 +49,10 @@ Route::controller(WebController::class)->group(function () {
 
 Route::controller(AdminController::class)->group(function () {
 
+    Route::get('/foodScanner', 'foodScanner');
     Route::get('/scanner', 'scanner');
     Route::get('/ticketCollector', 'reserve');
+    Route::get('/foodCollector', 'foodreserve');
 });
 Route::get('pick', function () {
     return view('web.pickuppoint');
@@ -105,8 +106,6 @@ Route::get('/clear-cache', function () {
 });
 Route::controller(AdminController::class)->group(function () {
 
-     Route::get('/admin/dashboard','index');
-     Route::get('/admin/users','usersIndex');
-
-
+    Route::get('/admin/dashboard', 'index');
+    Route::get('/admin/users', 'usersIndex');
 });

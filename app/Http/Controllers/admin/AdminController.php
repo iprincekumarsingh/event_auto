@@ -25,6 +25,7 @@ class AdminController extends Controller
         }
         # code...
     }
+
     public function usersIndex()
     {
         $user = User::get();
@@ -42,14 +43,14 @@ class AdminController extends Controller
         if ($data->count() == 0) {
             echo 0;
         } else {
-            if ($data[0]['entryDone'] == 2) {
+            if ($data[0]['entryDone'] == 1) {
                 echo "-1";
             } else {
                 $entry_count = 0;
-                if ($entry_count <= 2) {
+                if ($entry_count <= 1) {
 
-                    $entry_count = $entry_count + $data[0]['entryDone'] + 1;
-                    DB::table('eventregs')->where('payment_id', $request['ticket_number'])->update(array('entryDone' => $entry_count));
+                    // $entry_count = $entry_count + $data[0]['entryDone'] + 1;
+                    DB::table('eventregs')->where('payment_id', $request['ticket_number'])->update(array('entryDone' => 1));
                     echo 1;
                     // echo $entry_count;
                 }
@@ -57,6 +58,31 @@ class AdminController extends Controller
         }
         // echo "1";
         // echo $request['ticket_number'];
+    }
+    public function foodreserve(Request $req)
+    {
+        # code...
+        $data = Eventreg::where('payment_id', $req['ticket_number'])->get();
+        if ($data->count() == 0) {
+            echo 0;
+        } else {
+            if ($data[0]['food'] == 1) {
+                echo "-1";
+            } else {
+                $entry_count = 0;
+                if ($entry_count <= 1) {
+
+                    // $entry_count = $entry_count + $data[0]['entryDone'] + 1;
+                    DB::table('eventregs')->where('payment_id', $req['ticket_number'])->update(array('food' => 1));
+                    echo 1;
+                    // echo $entry_count;
+                }
+            }
+        }
+    }
+    public function foodScanner(Request $request)
+    {
+        return  view('foodScanner');
     }
 
     public function errorMsg()

@@ -41,7 +41,7 @@
         ?>
         @csrf
         <input type="text" hidden value="{{$total}}" name="tamount">
-        <script src="https://checkout.razorpay.com/v1/checkout.js" data-key="rzp_live_I5eIDUXSX6HJyL" data-amount="{{$ftotal}}"
+        <script src="https://checkout.razorpay.com/v1/checkout.js" data-key="rzp_test_6ezF7HXzvyJKB5" data-amount="{{$ftotal}}"
             data-currency="INR" data-buttontext="Book Your seat" data-name="Divyasrishti"
             data-description="Raasleela :- A Garba Night"
             data-image="https://divyasrishtievents.in/img/logo.png" data-prefill.name="name"
