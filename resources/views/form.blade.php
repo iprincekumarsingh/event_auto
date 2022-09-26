@@ -18,30 +18,41 @@
 
                 </p>
 
-                <div class="mt-8">
-                    <a href="" class="text-2xl font-bold text-pink-600"></a>
-
-                    <h1 class="mt- not-italic">Enter {{app('request')->input('ticket_count')}} Names Of list</h1>
-                </div>
             </div>
 
             <div class="p-8 bg-white rounded-lg shadow-lg lg:p-12 lg:col-span-3">
+                <div class="mt-8">
+                    <a href="" class="text-2xl font-bold text-pink-600"></a>
+
+                    <h1 class="mt- not-italic"> Add {{ app('request')->input('ticket_count') }} Names</h1>
+                </div>
 
                 <form action="/addname" method="get" class="space-y-4">
-                    <input type="text" hidden name="payment_id" value="{{app('request')->input('razorpay_payment_id')}}"
-                        id="">
-                    <input type="text" hidden name="count" value="{{app('request')->input('ticket_count')}}">
+                    <input type="text" hidden name="payment_id"
+                        value="{{ app('request')->input('razorpay_payment_id') }}" id="">
+                    <input type="text" hidden name="count" value="{{ app('request')->input('ticket_count') }}">
                     <?php
-    for ($i=1; $i<$_GET['ticket_count'] ; $i++) {
+                    $ii=0;
+                    if ($_GET['ticket_type'] == 2) {
+                        $ii=2;
+                } elseif ($_GET['ticket_count'] >= 3) {
+
+                    $ii=$_GET['ticket_count'];
+                }
+    for ($i=0; $i<$ii ; $i++) {
  ?>
                     <div>
                         <label class="sr-only" for="name">Name</label>
-                        <input name="name{{$i}}" class="w-full p-3 text-sm border-gray-200 rounded-lg"
-                            placeholder="Name" type="text" id="name" />
+                        <input name="name{{ $i }}" class="w-full p-3 text-sm border-gray-200 rounded-lg"
+                            placeholder="Name {{ $i + 1 }}" type="text" id="name" />
                     </div>
                     <?php }  ?>
 
-                    <button type="submit">Add</button>
+                    <div class="col-span-6">
+                        <button class="rounded-lg bg-black text-sm p-2.5 text-white w-full block" type="submit">
+                            Add names
+                        </button>
+                    </div>
 
                 </form>
             </div>

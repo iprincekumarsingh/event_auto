@@ -37,8 +37,44 @@ class AdminController extends Controller
         return view('scanner');
         # code...
     }
+    public function ticket_data()
+    {
+        $ticket = DB::table('eventregs')
+            ->join('add_names', 'eventregs.payment_id', '=', 'add_names.payment_id')
+            ->where('eventregs.payment_id', 'pay_KKnq41pONnh6KG')
+            ->select('eventregs.name', 'eventregs.payment_id', 'eventregs.payment_done', 'add_names.name AS name2')
+            ->get();
+        //    echo "<pre>";
+        //    echo $ticket;
+
+        return view('ticket', compact('ticket'));
+    }
     public function reserve(Request $request)
     {
+
+
+        $ticket = DB::table('eventregs')
+            ->join('add_names', 'eventregs.payment_id', '=', 'add_names.payment_id')
+            ->where('eventregs.payment_id', $request['ticket_number'])
+            ->select('eventregs.name', 'eventregs.payment_id', 'add_names.name AS name2')
+            ->get();
+
+        $data = Eventreg::select('name')
+            ->where('payment_id', $request['ticket_number'])
+            ->get();
+        if ($data->count() == 0) {
+            echo "Ticket is Invalid";
+            echo "<a href='{{url('/scanner')}}'></a>";
+        } else {
+            return view('ticket', compact('ticket', 'data'));
+        }
+        // echo "1";
+        // echo $request['ticket_number'];
+    }
+    public function reserveplus(Request $request)
+    {
+        # code..
+
         $data = Eventreg::where('payment_id', $request['ticket_number'])->get();
         if ($data->count() == 0) {
             echo 0;
@@ -51,13 +87,11 @@ class AdminController extends Controller
 
                     // $entry_count = $entry_count + $data[0]['entryDone'] + 1;
                     DB::table('eventregs')->where('payment_id', $request['ticket_number'])->update(array('entryDone' => 1));
+                    // return redirect('/ticket_data');
                     echo 1;
-                    // echo $entry_count;
                 }
             }
         }
-        // echo "1";
-        // echo $request['ticket_number'];
     }
     public function foodreserve(Request $req)
     {

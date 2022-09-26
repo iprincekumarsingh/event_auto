@@ -42,7 +42,8 @@
                         <?php
                         $amount = 0;
                         for ($i=0; $i <sizeof($eventTicket) ; $i++) {
-                             $amount = $amount +$eventTicket[$i]['amount'];
+                            //  $amount = $amount+=$eventTicket[$i]['amount'];
+                            $amount = ((int)$amount + (int)$eventTicket[$i]['amount']);
                         }
                         ?>
                         Rs.{{$amount}}

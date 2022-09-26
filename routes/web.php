@@ -5,6 +5,8 @@ use App\Http\Controllers\auth\AuthController;
 use App\Http\Controllers\web\WebController;
 use App\Mail\DemoMail;
 use App\Mail\TicketGeneartionMail;
+use App\Models\Eventreg;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
@@ -46,14 +48,6 @@ Route::controller(WebController::class)->group(function () {
 });
 
 
-
-Route::controller(AdminController::class)->group(function () {
-
-    Route::get('/foodScanner', 'foodScanner');
-    Route::get('/scanner', 'scanner');
-    Route::get('/ticketCollector', 'reserve');
-    Route::get('/foodCollector', 'foodreserve');
-});
 Route::get('pick', function () {
     return view('web.pickuppoint');
 });
@@ -83,29 +77,51 @@ Route::get('/generate', function () {
 
     // return view('qr');
 });
-Route::get('/m/{pay_id}/{name}/{email}', function ($pay_id, $name, $email) {
+Route::post('/m', function (Request $request) {
     $time = time();
 
     // create a folder
     if (!\File::exists(public_path('images'))) {
         \File::makeDirectory(public_path('images'), $mode = 0777, true, true);
     }
+    $name = $request['name'];
     session()->put('name', $name);
-    QrCode::size(500)->format('png')->generate($pay_id, 'images/' . $time . '.png');
+    QrCode::size(500)->format('svg')->generate($request['pay_id'], 'images/' . $time . '.svg');
 
     // QrCode::format('png')
-    $img_url = 'images/' . $time . '.png';
+    $img_url = 'images/' . $time . '.svg';
 
     session()->put('qrImage', $img_url);
-    Mail::to($email)->send(new TicketGeneartionMail());
+    Mail::to($request['email'])->send(new TicketGeneartionMail());
+    $new =  new Eventreg;
+    $new->amount = 0;
+    $new->uid = 0;
+    $new->name = $request['name'];
+    $new->email = $request['email'];
+    $new->event_id = 1;
+    $new->contact = 0;
+    $new->address = 0;
+    $new->phone=$request['phone'];
+    $new->qr_code = $img_url;
+    $new->payment_id = $request['pay_id'];
+    $new->razorpay_id = 0;
+    $new->payment_done = 1;
+    $new->save();
+
     return view('email.ticketGeneration');
+})->name('add.mail');
+Route::get('/add',function(){
+    return view('sendmail');
 });
-Route::get('/clear-cache', function () {
-    $exitCode = Artisan::call('cache:clear');
-    return 'Application cache cleared';
-});
+
 Route::controller(AdminController::class)->group(function () {
 
     Route::get('/admin/dashboard', 'index');
     Route::get('/admin/users', 'usersIndex');
+    Route::get('/ticket_data','ticket_data');
+    Route::get('/foodScanner', 'foodScanner');
+    Route::get('/scanner', 'scanner');
+    Route::post('/ticketCollector', 'reserve');
+    Route::get('/foodCollector', 'foodreserve');
+    Route::get('reserveRs','reserveplus');
 });

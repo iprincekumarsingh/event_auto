@@ -125,7 +125,8 @@
                     </div>
                     <ul class="flex items-center flex-shrink-0 space-x-6">
                         <!-- Notifications menu -->
-
+                        {{-- <a href="">Event Scanner</a> --}}
+                       <a href="{{url('/scanner')}}"><img width="30px" src="{{url('/img/im/camera.png')}}" alt=""></a>
                         <!-- Profile menu -->
                         <li class="relative">
                             <button class="align-middle rounded-full focus:shadow-outline-purple focus:outline-none"

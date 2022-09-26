@@ -30,8 +30,8 @@
         <!-- Header -->
         <header class="app__header">
             <span class="app__header-icon">
-                <a href="{{url('foodScanner')}}">
-                    <img width="100px" src="{{url('img/food1.png')}}" alt="" srcset="">
+                <a href="{{ url('foodScanner') }}">
+                    <img width="100px" src="{{ url('img/food1.png') }}" alt="" srcset="">
                 </a>
             </span>
         </header>
@@ -43,12 +43,11 @@
             <div class="app__dialog app__dialog--hide">
                 <div class="app__dialog-content">
                     <h1>QR Code</h1>
-                    <form id="form">
-
-
+                    <form method="post" action="{{ url('ticketCollector') }}" id="form">
+                        @csrf
                         <input name="ticket_number" type="text" id="result">
                 </div>
-                <button id="save" type="button" class="-close">Get Details</button>
+                <button id="savse" type="submit" class="-close">Get Details</button>
                 <div class="app__dialog-actions">
                     <!-- <button type="button" class="app__dialog-open">Open</button> -->
 
@@ -56,6 +55,7 @@
                     </form>
                 </div>
             </div>
+
 
             <div class="app__dialog-overlay app__dialog--hide"></div>
 
@@ -119,8 +119,8 @@
     <script>
         $('#save').click(function() {
             // document.getElementById("form").addEventListener("click", function(event){
-  event.preventDefault()
-  $ticket_number = $('#result').val();
+            event.preventDefault()
+            $ticket_number = $('#result').val();
             $.ajax({
                 url: "ticketCollector",
                 method: "GET",
@@ -128,21 +128,22 @@
                     ticket_number: $ticket_number,
                 },
                 success: function(dataabc) {
-                    if (dataabc == 1) {
-                        Toastify({
-                            text: "Entry Successfull",
-                            // duration: 2000,
-                            newWindow: true,
-                            close: true,
-                            gravity: "top", // `top` or `bottom`
-                            position: "left", // `left`, `center` or `right`
-                            stopOnFocus: true, // Prevents dismissing of toast on hover
-                            style: {
-                                background: "linear-gradient(to right, #00b09b, #96c93d)",
-                            },
-                            onClick: function() {} // Callback after click
-                        }).showToast();
-                    } else if(dataabc==-1) {
+                    if (dataabc) {
+                        // Toastify({
+                        //     text: "Entry Successfull",
+                        //     // duration: 2000,
+                        //     newWindow: true,
+                        //     close: true,
+                        //     gravity: "top", // `top` or `bottom`
+                        //     position: "left", // `left`, `center` or `right`
+                        //     stopOnFocus: true, // Prevents dismissing of toast on hover
+                        //     style: {
+                        //         background: "linear-gradient(to right, #00b09b, #96c93d)",
+                        //     },
+                        //     onClick: function() {} // Callback after click
+                        // }).showToast();
+                        console.log(dataabc);
+                    } else if (dataabc == -1) {
                         Toastify({
                             text: "Entry is Already Given",
                             // duration: 3000,
@@ -156,8 +157,7 @@
                             },
                             onClick: function() {} // Callback after click
                         }).showToast();
-                    }
-                    else{
+                    } else {
                         Toastify({
                             text: "Ticket is invalid",
                             // duration: 3000,
@@ -180,7 +180,6 @@
 
 
         });
-
     </script>
 
 </body>

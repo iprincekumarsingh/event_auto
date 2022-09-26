@@ -70,32 +70,32 @@
             </div> --}}
             <p class="mb-8 leading-relaxed">
             <div class=""></div>
-          {{$events->event_description}}
+            {{ $events->event_description }}
             </p>
             <div class="flex justify-center py-4">
 
                 {{-- @if (session()->has('isLoggedIn')) --}}
                 <button class="relative inline-block group focus:outline-none focus:ring" data-bs-toggle="modal"
-                data-bs-target="#ticketBookingModal" href="#">
-                <span
-                    class="absolute inset-0 transition-transform translate-x-1.5 translate-y-1.5 bg-indigo-400 group-hover:translate-y-0 group-hover:translate-x-0"></span>
+                    data-bs-target="#ticketBookingModal" href="#">
+                    <span
+                        class="absolute inset-0 transition-transform translate-x-1.5 translate-y-1.5 bg-indigo-400 group-hover:translate-y-0 group-hover:translate-x-0"></span>
 
-                <span
-                    class="relative inline-block px-8 py-3 text-lg font-bold tracking-widest text-black uppercase border-2 border-current group-active:text-opacity-75">
-                    Buy your ticket
-                </span>
-            </button>
+                    <span
+                        class="relative inline-block px-8 py-3 text-lg font-bold tracking-widest text-black uppercase border-2 border-current group-active:text-opacity-75">
+                        Buy your ticket
+                    </span>
+                </button>
                 {{-- @else
                 <button class="relative inline-block group focus:outline-none focus:ring"
-                data-bs-target="#ticketBookingModal" href="#">
-                <span
-                    class="absolute inset-0 transition-transform translate-x-1.5 translate-y-1.5 bg-indigo-400 group-hover:translate-y-0 group-hover:translate-x-0"></span>
+                    data-bs-target="#ticketBookingModal" href="#">
+                    <span
+                        class="absolute inset-0 transition-transform translate-x-1.5 translate-y-1.5 bg-indigo-400 group-hover:translate-y-0 group-hover:translate-x-0"></span>
 
-                <span
-                    class="relative inline-block px-8 py-3 text-lg font-bold tracking-widest text-black uppercase border-2 border-current group-active:text-opacity-75">
-                 <a href="{{route('auth.index')}}"> Login to Book Ticket</a>
-                </span> --}}
-            {{-- </button> --}}
+                    <span
+                        class="relative inline-block px-8 py-3 text-lg font-bold tracking-widest text-black uppercase border-2 border-current group-active:text-opacity-75">
+                        <a href="{{route('auth.index')}}"> Login to Book Ticket</a>
+                    </span> --}}
+                {{-- </button> --}}
 
                 {{-- @endif --}}
 
@@ -171,16 +171,41 @@
                                                     <div class="col-span-6">
                                                         <label name="phone" class="block mb-1 text-sm text-gray-600"
                                                             for="phone">
-                                                            Ticket Count
+                                                            Select if you have group more than 3 people
                                                         </label>
                                                         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-                                                        <input onchange="test()" min="1" value="1"
-                                                            name="ticketCount"
+                                                        <input onchange="test()" value="1"
+                                                        name="ticketCount"
                                                             class="rounded-lg shadow-sm border-gray-200 w-full text-sm p-2.5"
-                                                            type="num" id="ticketcount" />
+                                                           min="3" placeholder=""  type="text" id="ticketcount" />
                                                     </div>
 
-
+                                                    <div class="col-span-6">
+                                                        <label name="phone" class="block mb-1 text-sm text-gray-600"
+                                                            for="phone">
+                                                            Select Ticket Type
+                                                        </label>
+                                                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+                                                        <select
+                                                            class="rounded-lg shadow-sm border-gray-200 w-full text-sm p-2.5"
+                                                            name="ticket_type" id="">
+                                                            <option
+                                                                class="rounded-lg shadow-sm border-gray-200 w-full text-sm p-2.5"
+                                                                value="0">Select</option>
+                                                            <option
+                                                                class="rounded-lg shadow-sm border-gray-200 w-full text-sm p-2.5"
+                                                                value="1">Single Ticket</option>
+                                                            <option
+                                                                class="rounded-lg shadow-sm border-gray-200 w-full text-sm p-2.5"
+                                                                value="2">Couple Pass</option>
+                                                            <option
+                                                                class="rounded-lg shadow-sm border-gray-200 w-full text-sm p-2.5"
+                                                                value="0">None</option>
+                                                            {{-- <option
+                                                                class="rounded-lg shadow-sm border-gray-200 w-full text-sm p-2.5"
+                                                                value="1">Group</option> --}}
+                                                        </select>
+                                                    </div>
                                                     @foreach ($event as $events)
                                                         <input type="text" name="eventcode" hidden
                                                             value="{{ $events->event_id }}">
@@ -238,7 +263,7 @@
         <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
             <!-- modal containing image box -->
             <img class="object-cover object-center rounded-md cursor-pointer hover:scale-105 transition-transform"
-                alt="event image" src="{{url('img/ticket_banner.png')}}" data-bs-toggle="modal"
+                alt="event image" src="{{ url('img/ticket_banner.png') }}" data-bs-toggle="modal"
                 data-bs-target="#eventImageModal">
             <!-- Modal -->
             <div class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
@@ -257,7 +282,7 @@
                         </div>
                         <!-- modal body -->
                         <div class="modal-body relative p-4">
-                            <img class="mx-auto" src="{{url('img/ticket_banner.png')}}" alt="">
+                            <img class="mx-auto" src="{{ url('img/ticket_banner.png') }}" alt="">
                         </div>
                     </div>
                 </div>
@@ -284,16 +309,14 @@
 <!-- ====== Footer Section End -->
 {{--
 <script src="{{ url('/js/nav-toggle.js') }}"></script> --}}
- <script src="{{ url('/tw-elements/dist/js/index.min.js') }}" defer></script>
- <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer="defer"></script>
+<script src="{{ url('/tw-elements/dist/js/index.min.js') }}" defer></script>
+<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer="defer"></script>
 <script>
     var d = document.getELE("razorpay-payment-button");
     d.className +=
         " relative inline-block px-8 py-3 text-lg font-bold tracking-widest text-black uppercase border-2 border-current group-active:text-opacity-75";
 </script>
-<script>
-
-</script>
+<script></script>
 </body>
 
 </html>
