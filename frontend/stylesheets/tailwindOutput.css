@@ -4685,10 +4685,6 @@ textarea.form-control.is-invalid{
   margin-top: 1.25rem;
 }
 
-.mt-20{
-  margin-top: 5rem;
-}
-
 .mt-16{
   margin-top: 4rem;
 }
@@ -4921,10 +4917,6 @@ textarea.form-control.is-invalid{
   width: 3rem;
 }
 
-.w-96{
-  width: 24rem;
-}
-
 .min-w-0{
   min-width: 0px;
 }
@@ -5071,10 +5063,6 @@ textarea.form-control.is-invalid{
 
 .grid-cols-2{
   grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.grid-cols-1{
-  grid-template-columns: repeat(1, minmax(0, 1fr));
 }
 
 .flex-row{
@@ -5413,6 +5401,11 @@ textarea.form-control.is-invalid{
   background-color: transparent;
 }
 
+.bg-orange-600{
+  --tw-bg-opacity: 1;
+  background-color: rgb(234 88 12 / var(--tw-bg-opacity));
+}
+
 .bg-gray-100{
   --tw-bg-opacity: 1;
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
@@ -5607,11 +5600,6 @@ textarea.form-control.is-invalid{
 .py-2\.5{
   padding-top: 0.625rem;
   padding-bottom: 0.625rem;
-}
-
-.px-0{
-  padding-left: 0px;
-  padding-right: 0px;
 }
 
 .px-2{
@@ -6013,12 +6001,6 @@ textarea.form-control.is-invalid{
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
-.shadow-xl{
-  --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-  --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-
 .shadow-inner{
   --tw-shadow: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
   --tw-shadow-colored: inset 0 2px 4px 0 var(--tw-shadow-color);
@@ -6037,9 +6019,10 @@ textarea.form-control.is-invalid{
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
-.shadow-rose-800{
-  --tw-shadow-color: #9f1239;
-  --tw-shadow: var(--tw-shadow-colored);
+.shadow-xl{
+  --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
 .outline-none{
@@ -6153,6 +6136,21 @@ textarea.form-control.is-invalid{
   to {
     background-position: 200% center;
   }
+}
+
+/* style for events box and event-cards inside it */
+
+.events-box {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.events-box > .event-card > div {
+  height: 28rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .focus-within\:text-purple-500:focus-within{
@@ -6269,12 +6267,6 @@ textarea.form-control.is-invalid{
 .hover\:shadow-lg:hover{
   --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-
-.hover\:shadow-xl:hover{
-  --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-  --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
@@ -6661,10 +6653,6 @@ textarea.form-control.is-invalid{
     max-width: 42rem;
   }
 
-  .sm\:max-w-none{
-    max-width: none;
-  }
-
   .sm\:max-w-xl{
     max-width: 36rem;
   }
@@ -6691,12 +6679,6 @@ textarea.form-control.is-invalid{
 
   .sm\:gap-12{
     gap: 3rem;
-  }
-
-  .sm\:space-y-24 > :not([hidden]) ~ :not([hidden]){
-    --tw-space-y-reverse: 0;
-    margin-top: calc(6rem * calc(1 - var(--tw-space-y-reverse)));
-    margin-bottom: calc(6rem * var(--tw-space-y-reverse));
   }
 
   .sm\:space-y-0 > :not([hidden]) ~ :not([hidden]){
